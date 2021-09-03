@@ -17,7 +17,7 @@
     "@types/jest": "26.0.23",
     "babel-loader": "8.2.2",
     "concurrently": "6.2.0",
-    "cross-env": "7.0.3",
+    "cross-env": "^7.0.3",
     "eslint": "7.29.0",
     "fkill-cli": "6.1.0",
     "html-loader": "2.1.2",
@@ -31,7 +31,8 @@
   "dependencies": {
     "axios": "0.21.1",
     "cors": "2.8.5",
-    "express": "4.17.1"
+    "express": "4.17.1",
+    "fkill": "^7.2.1"
   },
   "repository": {
     "type": "git",

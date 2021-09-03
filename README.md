@@ -10,8 +10,8 @@ You are not allowed to collaborate during the sprint challenge.
 
 ## Project Set Up
 
-- [ ] Fork and clone the repo. Delete your old fork from Github first if you are repeating this Unit.
-- [ ] Open the assignment in Canvas and click on the "Set up git" option.
+- [x] Fork and clone the repo. Delete your old fork from Github first if you are repeating this Unit.
+- [x] Open the assignment in Canvas and click on the "Set up git" option.
 - [ ] Follow instructions to set up Codegrade's Webhook and Deploy Key.
 - [ ] Push your first commit: `git commit --allow-empty -m "first commit" && git push`.
 - [ ] Check to see that Codegrade has accepted your git submission.
@@ -30,8 +30,8 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 
 ### Instructions
 
-- [ ] Navigate to the root of the project with your command line.
-- [ ] Run `npm install` to download the dependencies listed in the `package.json` file.
+- [x] Navigate to the root of the project with your command line.
+- [x] Run `npm install` to download the dependencies listed in the `package.json` file.
 - [ ] Run `npm start` to compile the project and serve it.
 - [ ] Navigate Chrome to `http://localhost:3000`
 - [ ] In a separate terminal, run `npm test` to run tests.
@@ -65,7 +65,21 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. What is the DOM?
+
+-the Document Object Module. it is where we can see the layout of the document in HTML, CSS, and JavaScript without it being in the document.
+
 2. What is an event?
+
+-whenever the user does anything with the site to interact with it. 
+
 3. What is an event listener?
+
+-a function that will respond in a programmed way whenever the associated event is done by the user.
+
 4. Why would we convert a NodeList into an Array?
+
+-so that we can use the array methods on it like .forEach, .map, .filter, and .reduce.
+
 5. What is a component?
+
+- components are different parts of programming lanuages brought together to use in the website.
