@@ -1,5 +1,3 @@
-import axios from "axios";
-
 // TASK 1
   // ---------------------
   // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
@@ -12,8 +10,6 @@ import axios from "axios";
   //    <span class="temp">{ temp }</span>
   //  </div>
   //
-
-
 
 const Header = (title, date, temp) => {
 
@@ -49,24 +45,3 @@ const headerAppender = (selector) => {
 };
 
 export { Header, headerAppender }
-
-// const cardAppender = (selector) => {
-//   axios call to get all the articles
-//     .then(articles => {
-//       const parent = document.querySelector(selector);
-//       loop over array and for each element create a new Card
-//       after creating the card append it to parent
-
-
-
-//from codeGrade:
-// describe('TASK 2 - headerAppender', () => {
-//   beforeEach(() => {
-//     headerAppender('body')
-//   })
-//   test('[4] appends the header to the DOM', () => {
-//     expect(document.querySelector('.header>h1')).toBeTruthy()
-//     expect(document.querySelector('.header>.date')).toBeTruthy()
-//     expect(document.querySelector('.header>.temp')).toBeTruthy()
-//   })
-// })

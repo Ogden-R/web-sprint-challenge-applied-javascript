@@ -1,6 +1,4 @@
 import axios from "axios";
-// import { articles } from '../mocks/data'
-
 // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -19,9 +17,6 @@ import axios from "axios";
   //   </div>
   // </div>
 
-
-
-  //
 const Card = (article) => {
   const cardDiv = document.createElement('div');
   const headLineDiv = document.createElement('div');
@@ -45,6 +40,9 @@ const Card = (article) => {
   photoImg.src = article.authorPhoto;
   authorNameSpan.textContent = article.authorName;
 
+  cardDiv.addEventListener('click',()=>{console.log(article.headline)});
+
+
   return cardDiv;
 }
 
@@ -58,34 +56,45 @@ const Card = (article) => {
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
 
-//   const cardAppender = (selector) => {
-    
-//   //   for (let i = 0; i < articles.length; i++){
-//   //   const cardMaker = Card(articles[i]);
-//   //   selector.appendChild(cardMaker);
-//   // }
-//   // return cardAppender;
-// }
   
 const cardAppender = (selector) => {
-  axios.get('http://localhost:5000/api/articles')
-  .then(resp => {
-    console.log(resp.data);
 
-    for(let i = 0; i < resp.data.message.length; i++){
-      const madeCard = { article: resp.data.message[i] }
-      const cardMaker = Card(madeCard);
-      selector.appendChild(cardMaker);
-    }
-  })
-  .catch(err => {
-        const errorText = document.createElement('p');
-        errorText.textContent = "Oh No! Try again later :(";
-        document.body.appendChild(errorText);
-      })
-      .finally(() => {
-        console.log("We're baaaaaaack!");
-      })
-}
+  axios
+    .get("http://localhost:5000/api/articles")
+    .then((response) => {
+      const articles1 = response.data.articles.javascript;
+      const articles2 = response.data.articles.bootstrap;
+      const articles3 = response.data.articles.technology;
+      const articles4 = response.data.articles.jquery;
+      const articles5 = response.data.articles.node;
 
+      console.dir(articles1);
+      articles1.forEach((articles1) => {
+        const card = Card(articles1);
+        document.querySelector(selector).appendChild(card);
+      });
+      articles2.forEach((articles2) => {
+        const card = Card(articles2);
+        document.querySelector(selector).appendChild(card);
+      });
+      articles3.forEach((articles3) => {
+        const card = Card(articles3);
+        document.querySelector(selector).appendChild(card);
+      });
+      articles4.forEach((articles4) => {
+        const card = Card(articles4);
+        document.querySelector(selector).appendChild(card);
+      });
+      articles5.forEach((articles5) => {
+        const card = Card(articles5);
+        document.querySelector(selector).appendChild(card);
+      });
+    })
+    .catch((error) => {
+      const errorText = document.createElement("p");
+      errorText.textContent = "Oops! Something went wrong.";
+      document.body.appendChild(errorText);
+      console.log("Error");
+    });
+};
 export { Card, cardAppender }
