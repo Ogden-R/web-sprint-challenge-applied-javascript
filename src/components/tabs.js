@@ -52,23 +52,21 @@ const Tabs = (topics) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
-const tabsAppender = async (selector) => {
-  try {
-    const resp = await axios.get('http://localhost:5000/api/topics');
-  
-    for (let i = 0; i < topics.topics.length; i++){
-      const tab = { topics: topics.topics[i] }
-      const madeTab = Tabs(tab);
-      selector.appendChild(madeTab);
-    }
-  } catch(err) {
-    const errorText = document.createElement('p');
-    errorText.textContent = "Nope! Try again later :(";
-    document.body.appendChild(errorText);
-  } finally {
-    console.log("I'm baaaaaaack!");
-  }
-}
+const tabsAppender = (selector) => {
+  axios
+    .get("http://localhost:5000/api/topics")
+    .then((response) => {
+      const topics = response.data.topics;
+      const tab = Tabs(topics);
+      document.querySelector(selector).appendChild(tab);
+    })
+    .catch((error) => {
+      const errorText = document.createElement("p");
+      errorText.textContent = "Oops! Something went wrong.";
+      document.body.appendChild(errorText);
+      console.log("Error");
+    });
+};
 
 export { Tabs, tabsAppender }
 
