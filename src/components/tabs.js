@@ -45,19 +45,6 @@ const Tabs = (topics) => {
   return topicDiv;
 }
 
-// describe('TASK 3 - Tabs', () => {
-//   let tabs
-//   beforeEach(() => {
-//     tabs = Tabs(['foo', 'bar', 'baz'])
-//   })
-//   test('[5] returns topic tabs with the correct text', () => {
-//     expect(queries.getByText(tabs, 'foo'))
-//     expect(queries.getByText(tabs, 'bar'))
-//     expect(queries.getByText(tabs, 'baz'))
-//   })
-// })
-
-
 // TASK 4
   // ---------------------
   // Implement this function which takes a css selector as its only argument.
@@ -65,11 +52,63 @@ const Tabs = (topics) => {
   // Find the array of topics inside the response, and create the tabs using the Tabs component.
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
-const tabsAppender = (selector) => {
-  //no
+const tabsAppender = async (selector) => {
+  try {
+    const resp = await axios.get('http://localhost:5000/api/topics');
+  
+    for (let i = 0; i < topics.topics.length; i++){
+      const tab = { topics: topics.topics[i] }
+      const madeTab = Tabs(tab);
+      selector.appendChild(madeTab);
+    }
+  } catch(err) {
+    const errorText = document.createElement('p');
+    errorText.textContent = "Nope! Try again later :(";
+    document.body.appendChild(errorText);
+  } finally {
+    console.log("I'm baaaaaaack!");
+  }
 }
 
 export { Tabs, tabsAppender }
 
+// const cardAppender = (selector) => {
+//   axios call to get all the articles
+//     .then(articles => {
+//       const parent = document.querySelector(selector);
+//       loop over array and for each element create a new Card
+//       after creating the card append it to parent
 
-console.log(axios.get('http://localhost:5000/api/topics'))
+
+// describe('TASK 4 - tabsAppender', () => {
+//   beforeEach(() => {
+//     tabsAppender('body')
+//   })
+//   test('[6] fetches topics and appends the correct tabs to the DOM', async () => {
+//     for (let i = 0; i < topics.topics.length; i++) {
+//       expect(await screen.findByText(topics.topics[i])).toBeInTheDocument()
+//     }
+//   })
+// })
+
+
+// const tabsAppender = (selector) => {
+//   axios.get('http://localhost:5000/api/topics')
+//   .then(resp => {
+//     console.log(resp.data);
+//   }
+//   for(let i = 0; i < resp.data.message.length; i++){
+//     const madeTab = { article: resp.data.message[i] }
+//     const tabMaker = Tabs(madeTab);
+//     selector.appendChild(tabMaker);
+//   }
+//   })
+//   .catch(err => {
+//       const errorText = document.createElement('p');
+//       errorText.textContent = "Oh No! Try again later :(";
+//       document.body.appendChild(errorText);
+//     })  
+//     .finally(() => {
+//       console.log("We're baaaaaaack!");
+//     })
+// }

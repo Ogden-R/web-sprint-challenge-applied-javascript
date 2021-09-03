@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // TASK 1
   // ---------------------
   // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
@@ -10,6 +12,8 @@
   //    <span class="temp">{ temp }</span>
   //  </div>
   //
+
+
 
 const Header = (title, date, temp) => {
 
@@ -26,9 +30,9 @@ const Header = (title, date, temp) => {
   dateSpan.classList.add('date');
   tempSpan.classList.add('temp');
 
-  dateSpan.textContent = date;
-  headerTitle.textContent = title;
-  tempSpan.textContent = temp;
+  dateSpan.textContent = `${date}`;
+  headerTitle.textContent = `${title}`;
+  tempSpan.textContent = `${temp}°F`;
 
   return headerDiv;
 }
@@ -38,10 +42,31 @@ const Header = (title, date, temp) => {
   // It should create a header using the Header component above, passing arguments of your choosing.
   // It should append the header to the element in the DOM that matches the given selector.
   //
-  const headerEntryPoint = document.querySelector('.header-container')
 
 const headerAppender = (selector) => {
-  //no errors for you
-}
+  const newHeader = Header("Lambda Times", "September 3, 2021", "97");
+  document.querySelector(selector).appendChild(newHeader);
+};
 
 export { Header, headerAppender }
+
+// const cardAppender = (selector) => {
+//   axios call to get all the articles
+//     .then(articles => {
+//       const parent = document.querySelector(selector);
+//       loop over array and for each element create a new Card
+//       after creating the card append it to parent
+
+
+
+//from codeGrade:
+// describe('TASK 2 - headerAppender', () => {
+//   beforeEach(() => {
+//     headerAppender('body')
+//   })
+//   test('[4] appends the header to the DOM', () => {
+//     expect(document.querySelector('.header>h1')).toBeTruthy()
+//     expect(document.querySelector('.header>.date')).toBeTruthy()
+//     expect(document.querySelector('.header>.temp')).toBeTruthy()
+//   })
+// })
