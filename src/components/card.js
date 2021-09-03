@@ -1,3 +1,6 @@
+import axios from "axios";
+// import { articles } from '../mocks/data'
+
 // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -15,6 +18,9 @@
   //     <span>By { authorName }</span>
   //   </div>
   // </div>
+
+
+
   //
 const Card = (article) => {
   const cardDiv = document.createElement('div');
@@ -51,9 +57,35 @@ const Card = (article) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+
+//   const cardAppender = (selector) => {
+    
+//   //   for (let i = 0; i < articles.length; i++){
+//   //   const cardMaker = Card(articles[i]);
+//   //   selector.appendChild(cardMaker);
+//   // }
+//   // return cardAppender;
+// }
   
 const cardAppender = (selector) => {
-  //this is just to make it so there are no errors.
+  axios.get('http://localhost:5000/api/articles')
+  .then(resp => {
+    console.log(resp.data);
+
+    for(let i = 0; i < resp.data.message.length; i++){
+      const madeCard = { article: resp.data.message[i] }
+      const cardMaker = Card(madeCard);
+      selector.appendChild(cardMaker);
+    }
+  })
+  .catch(err => {
+        const errorText = document.createElement('p');
+        errorText.textContent = "Oh No! Try again later :(";
+        document.body.appendChild(errorText);
+      })
+      .finally(() => {
+        console.log("We're baaaaaaack!");
+      })
 }
 
 export { Card, cardAppender }
